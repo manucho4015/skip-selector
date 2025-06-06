@@ -31,7 +31,7 @@ const SelectSkipPage = () => {
     }, [])
 
     return (
-        <div className="min-h-screen bg-[#ecfdf59a] p-4 sm:p-8">
+        <div className="min-h-screen bg-[#ecfdf59a] relative">
             <div className="hidden  md:flex overflow-auto items-center justify-center gap-4 mb-[50px]">
                 {
                     pageSteps.map((step, index) => (
@@ -60,6 +60,28 @@ const SelectSkipPage = () => {
 
                 <SkipGrid skips={skips} selectedId={selectedId} onSelect={handleSelect} />
             </div>
+
+            {/* 'Continue' footer banner */}
+            {
+                selectedId && (
+                    <div className="sticky bottom-0 full z-[100] bg-emerald-900 py-4 text-white mt-[25px]">
+                        <p className='text-center text-[12px]'>Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.</p>
+                        <div className="flex justify-between items-center px-[5%] mt-[10px]">
+                            <div className="flex gap-4 items-baseline">
+                                <p className='capitalize'>5 yard skip</p>
+                                <p className='capitalize'>14 day hire</p>
+                                <p className='text-white text-[24px] font-bold'>£241</p>
+                            </div>
+
+                            <button className='flex items-center bg-emerald-600 px-4 py-2 rounded-lg text-white font-medium capitalize gap-2'>
+                                continue
+                                <img src="/iconoir--arrow-right.svg" alt="arrow right" className='h-5 w-5' />
+                            </button>
+                        </div>
+                    </div>
+                )
+            }
+
         </div>
     )
 }
