@@ -40,7 +40,7 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
             whileTap={{ scale: 0.97 }}
             // onClick={handleClick}
             className={`relative rounded-2xl p-4 bg-white shadow-md cursor-pointer transition-all duration-300 ease-in-out
-    hover:shadow-[0_0_0_4px_rgba(34,197,94,0.2)]
+    hover:shadow-[10px_10px_10px_1px_rgba(34,197,94,0.15)]
     ${selected ? "ring-2 ring-emerald-500 shadow-lg" : ""}`}
         >
             {rippleVisible && (
@@ -61,10 +61,23 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
                     />
                 )}
             </AnimatePresence>
-            <div className="flex justify-center relative">
+
+            {/* Image container */}
+            <div className="flex justify-center relative py-[25px]">
                 <span className="bg-emerald-700 text-[12px] text-white py-1 px-4 rounded-2xl absolute top-0 right-0">{skip.size} Yards</span>
                 <img src='/skip-garbage-collector.png' alt={`${skip.size} yard skip`} className="h-32 object-contain" />
+
+                {
+                    !skip.allowed_on_road && (
+                        <div className="flex gap-2 border-[1px] border-[#f0d105] items-center absolute -bottom-[10px] left-0 rounded-full bg-[#d4d00505] py-1 px-3">
+                            <img src="/material-symbols--warning-outline-rounded.svg" alt="warning" className='w-5 h-5' />
+                            <p className='text-[#f0d105] text-[12px]'>Not Allowed On The Road</p>
+                        </div>
+                    )
+                }
             </div>
+
+            {/* Content */}
             <div className="mt-4">
                 <h3 className="text-lg font-semibold capitalize text-emerald-700">{skip.size} yard skip</h3>
                 <p className="text-sm text-gray-600">{skip.hire_period_days} day hire period</p>
