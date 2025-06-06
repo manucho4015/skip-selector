@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 // custom types
@@ -10,6 +11,26 @@ interface SkipCardProps {
 }
 
 const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
+    const [rippleStyle, setRippleStyle] = useState<React.CSSProperties | null>(null);
+    const [rippleVisible, setRippleVisible] = useState(false);
+
+    function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        setRippleStyle({
+            top: y,
+            left: x,
+            width: size,
+            height: size,
+        });
+        setRippleVisible(true);
+        setTimeout(() => setRippleVisible(false), 500); // Hide after animation
+
+        onSelect(skip); // Your original selection logic
+    }
     return (
         <motion.div
             layout
@@ -21,6 +42,12 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
     hover:shadow-[0_0_0_4px_rgba(34,197,94,0.2)]
     ${selected ? "ring-2 ring-emerald-500 shadow-lg" : ""}`}
         >
+            {rippleVisible && (
+                <span
+                    style={rippleStyle ?? {}}
+                    className="absolute bg-emerald-300/30 rounded-full animate-ripple pointer-events-none"
+                />
+            )}
             {/* PULSE ANIMATION */}
             <AnimatePresence>
                 {selected && (
