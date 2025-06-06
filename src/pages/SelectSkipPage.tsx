@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
+import { motion, type Cycle } from 'motion/react'
 
 // components
 import SkipGrid from '../components/SkipGrid'
@@ -10,7 +10,7 @@ import type { Skip } from '../types/skip'
 // data
 import { pageSteps } from '../data/steps'
 
-const SelectSkipPage = () => {
+const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
     const [skips, setSkips] = useState<Skip[]>([])
     const [selectedSkip, setSelectedSkip] = useState<Skip | null>(null)
 
@@ -75,7 +75,7 @@ const SelectSkipPage = () => {
                         <p className='text-white text-[24px] font-bold'>£{selectedSkip?.price_before_vat}</p>
                     </div>
 
-                    <motion.button whileTap={{ scale: .95 }} className='flex items-center bg-emerald-600 px-4 py-2 rounded-lg text-white font-medium capitalize gap-2'>
+                    <motion.button whileTap={{ scale: .95 }} onClick={() => toggleOpen()} className='flex items-center bg-emerald-600 px-4 py-2 rounded-lg text-white font-medium capitalize gap-2'>
                         continue
                         <img src="/iconoir--arrow-right.svg" alt="arrow right" className='h-5 w-5' />
                     </motion.button>
