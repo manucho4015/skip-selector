@@ -6,17 +6,17 @@ import type { Skip } from "../types/skip"
 
 interface SkipGridProps {
     skips: Skip[]
-    selectedId: number | null
-    onSelect: (id: number) => void
+    selectedSkip: Skip | null
+    onSelect: (skip: Skip) => void
 }
-const SkipGrid = ({ skips, selectedId, onSelect }: SkipGridProps) => {
+const SkipGrid = ({ skips, selectedSkip, onSelect }: SkipGridProps) => {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skips.map((skip) => (
                 <SkipCard
                     key={skip.id}
                     skip={skip}
-                    selected={selectedId === skip.id}
+                    selected={selectedSkip ? selectedSkip.id === skip.id : false}
                     onSelect={onSelect}
                 />
             ))}

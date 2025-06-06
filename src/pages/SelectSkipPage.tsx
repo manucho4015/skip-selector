@@ -11,14 +11,18 @@ import { pageSteps } from '../data/steps'
 
 const SelectSkipPage = () => {
     const [skips, setSkips] = useState<Skip[]>([])
-    const [selectedId, setSelectedId] = useState<number | null>(null)
+    const [selectedSkip, setSelectedSkip] = useState<Skip | null>(null)
 
-    const handleSelect = (id: number) => {
-        if (id === selectedId) {
-            setSelectedId(null)
-            return
+    const handleSelect = (skip: Skip) => {
+        if (selectedSkip) {
+            if (skip.id === selectedSkip.id) {
+                setSelectedSkip(null)
+                return
+            }
+            setSelectedSkip(skip)
+        } else {
+            setSelectedSkip(skip)
         }
-        setSelectedId(id)
     }
 
     useEffect(() => {
@@ -58,19 +62,19 @@ const SelectSkipPage = () => {
             </p>
             <div className="px-[10vw]">
 
-                <SkipGrid skips={skips} selectedId={selectedId} onSelect={handleSelect} />
+                <SkipGrid skips={skips} selectedSkip={selectedSkip} onSelect={handleSelect} />
             </div>
 
             {/* 'Continue' footer banner */}
             {
-                selectedId && (
+                selectedSkip && (
                     <div className="sticky bottom-0 full z-[100] bg-emerald-900 py-4 text-white mt-[25px]">
                         <p className='text-center text-[12px]'>Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.</p>
                         <div className="flex justify-between items-center px-[5%] mt-[10px]">
                             <div className="flex gap-4 items-baseline">
-                                <p className='capitalize'>5 yard skip</p>
-                                <p className='capitalize'>14 day hire</p>
-                                <p className='text-white text-[24px] font-bold'>£241</p>
+                                <p className='capitalize'>{selectedSkip.size} yard skip</p>
+                                <p className='capitalize'>{selectedSkip.hire_period_days} day hire</p>
+                                <p className='text-white text-[24px] font-bold'>£{selectedSkip.price_before_vat}</p>
                             </div>
 
                             <button className='flex items-center bg-emerald-600 px-4 py-2 rounded-lg text-white font-medium capitalize gap-2'>

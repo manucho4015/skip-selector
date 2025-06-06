@@ -3,7 +3,7 @@ import type { Skip } from "../types/skip"
 interface SkipCardProps {
     skip: Skip
     selected: boolean
-    onSelect: (id: number) => void
+    onSelect: (skip: Skip) => void
 }
 
 const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
@@ -23,7 +23,7 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
 
                     <p className="mt-2 text-xl font-bold text-emerald-900">£{skip.price_before_vat}</p>
                     <button
-                        onClick={() => onSelect(skip.id)}
+                        onClick={() => onSelect(skip)}
                         className={`mt-2 px-6 py-1 rounded-2xl text-white w-fit ${selected ? "bg-emerald-600" : "bg-emerald-700 hover:bg-emerald-600"
                             }`}
                     >
