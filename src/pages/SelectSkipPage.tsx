@@ -36,7 +36,7 @@ const SelectSkipPage = () => {
 
     return (
         <div className="min-h-screen bg-[#ecfdf59a] relative">
-            <div className="hidden  md:flex overflow-auto items-center justify-center gap-4 mb-[50px]">
+            <div className="hidden  md:flex overflow-auto items-center justify-center gap-4 mb-[50px] pt-[25px]">
                 {
                     pageSteps.map((step, index) => (
                         <div className="flex gap-5 items-center">
@@ -60,15 +60,14 @@ const SelectSkipPage = () => {
             <p className="text-center text-emerald-700 mb-6">
                 Select the skip size that best suits your needs.
             </p>
-            <div className="px-[10vw]">
-
+            <div className="px-[10vw] pb-[25px]">
                 <SkipGrid skips={skips} selectedSkip={selectedSkip} onSelect={handleSelect} />
             </div>
 
             {/* 'Continue' footer banner */}
             {
                 selectedSkip && (
-                    <div className="sticky bottom-0 full z-[100] bg-emerald-900 py-4 text-white mt-[25px]">
+                    <div className="sticky bottom-0 full z-[100] bg-emerald-900 py-4 text-white">
                         <p className='text-center text-[12px]'>Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.</p>
                         <div className="flex justify-between items-center px-[5%] mt-[10px]">
                             <div className="flex gap-4 items-baseline">
