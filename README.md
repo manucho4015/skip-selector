@@ -21,7 +21,7 @@ Redesigned "Choose Your Skip Size" page from [We Want Waste](https://wewantwaste
 
 | Mobile View                                    | Desktop View                                     |
 | ---------------------------------------------- | ------------------------------------------------ |
-| ![Mobile Screenshot](./screenshots/mobile.png) | ![Desktop Screenshot](./screenshots/desktop.png) |
+| ![Mobile Screenshot](./screenshots/mobile.PNG) | ![Desktop Screenshot](./screenshots/desktop.PNG) |
 
 ---
 
