@@ -6,6 +6,9 @@ import SkipGrid from '../components/SkipGrid'
 // custom types
 import type { Skip } from '../types/skip'
 
+// data
+import { pageSteps } from '../data/steps'
+
 const SelectSkipPage = () => {
     const [skips, setSkips] = useState<Skip[]>([])
     const [selectedId, setSelectedId] = useState<number | null>(null)
@@ -29,6 +32,24 @@ const SelectSkipPage = () => {
 
     return (
         <div className="min-h-screen bg-[#ecfdf59a] p-4 sm:p-8">
+            <div className="hidden  md:flex overflow-auto items-center justify-center gap-4 mb-[50px]">
+                {
+                    pageSteps.map((step, index) => (
+                        <div className="flex gap-5 items-center">
+                            <div key={index} className="flex gap-1 items-center w-fit">
+                                <img src={step.icon} alt={step.title} className='w-7 h-7' />
+                                <p className={`${index < 3 ? 'font-medium text-emerald-700' : 'text-[#667067]'} capitalize text-[14px]`}>{step.title}</p>
+                            </div>
+                            {
+                                index !== pageSteps.length - 1 && (
+                                    <div className={` ${index < 2 ? 'bg-[#0ceb26]' : 'bg-[#667067]'} h-[1.5px] w-16`} />
+                                )
+                            }
+                        </div>
+                    ))
+                }
+            </div>
+
             <h1 className="text-2xl sm:text-3xl font-bold text-center text-emerald-900 mb-2">
                 Choose Your Skip Size
             </h1>
