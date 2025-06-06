@@ -38,6 +38,7 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             whileTap={{ scale: 0.97 }}
+            // onClick={handleClick}
             className={`relative rounded-2xl p-4 bg-white shadow-md cursor-pointer transition-all duration-300 ease-in-out
     hover:shadow-[0_0_0_4px_rgba(34,197,94,0.2)]
     ${selected ? "ring-2 ring-emerald-500 shadow-lg" : ""}`}
