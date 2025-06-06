@@ -55,7 +55,7 @@ const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
                 }
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-bold text-center text-emerald-900 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-center text-emerald-900 mb-2 pt-[25px] md:p-0">
                 Choose Your Skip Size
             </h1>
             <p className="text-center text-emerald-700 mb-6">
@@ -67,8 +67,8 @@ const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
 
             {/* 'Continue' footer banner */}
             <motion.div transition={{ type: 'tween' }} initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: selectedSkip ? 1 : 0, opacity: selectedSkip ? 1 : 0, width: '100%' }} className="sticky bottom-0 full z-[100] bg-emerald-900 py-4 text-white">
-                <p className='text-center text-[12px]'>Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.</p>
-                <div className="flex justify-between items-center px-[5%] mt-[10px]">
+                <p className='text-center text-[12px] px-[5%] md:p-0'>Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.</p>
+                <div className="flex flex-wrap justify-end md:justify-between items-center px-[5%] mt-[25px] md:mt-[10px] gap-4">
                     <div className="flex gap-4 items-baseline">
                         <p className='capitalize'>{selectedSkip?.size} yard skip</p>
                         <p className='capitalize'>{selectedSkip?.hire_period_days} day hire</p>
