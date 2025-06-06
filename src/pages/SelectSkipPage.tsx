@@ -92,8 +92,9 @@ const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
                     </motion.button>
                 </div>
             </motion.div>
-
-
+            <footer className="text-xs absolute bottom-0 w-full  text-[#282727] text-center mt-10">
+                UI redesigned for GemWaste interview challenge.
+            </footer>
         </div>
     )
 }
