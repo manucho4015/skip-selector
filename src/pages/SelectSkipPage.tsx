@@ -13,6 +13,7 @@ import { pageSteps } from '../data/steps'
 const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
     const [skips, setSkips] = useState<Skip[]>([])
     const [selectedSkip, setSelectedSkip] = useState<Skip | null>(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     const handleSelect = (skip: Skip) => {
         if (selectedSkip) {
@@ -30,8 +31,8 @@ const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
         fetch('https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft')
             .then((response) => response.json())
             .then((data: Skip[]) => {
-                console.log(data)
                 setSkips(data)
+                setIsLoading(false)
             })
     }, [])
 
@@ -61,9 +62,19 @@ const SelectSkipPage = ({ toggleOpen }: { toggleOpen: Cycle }) => {
             <p className="text-center text-emerald-700 mb-6">
                 Select the skip size that best suits your needs.
             </p>
-            <div className="px-[10vw] pb-[25px]">
-                <SkipGrid skips={skips} selectedSkip={selectedSkip} onSelect={handleSelect} />
-            </div>
+
+            {
+                isLoading ? (
+                    <div className="h-[50vh] w-[100vw] flex justify-center items-center">
+                        <img src="/line-md--loading-twotone-loop.svg" alt="loading" className='h-[50px] w-[50px] md:h-[100px] md:w-[100px]' />
+                    </div>
+                ) : (
+                    <div className="px-[10vw] pb-[25px]">
+                        <SkipGrid skips={skips} selectedSkip={selectedSkip} onSelect={handleSelect} />
+                    </div>
+                )
+            }
+
 
             {/* 'Continue' footer banner */}
             <motion.div transition={{ type: 'tween' }} initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: selectedSkip ? 1 : 0, opacity: selectedSkip ? 1 : 0, width: '100%' }} className="sticky bottom-0 full z-[100] bg-emerald-900 py-4 text-white">
