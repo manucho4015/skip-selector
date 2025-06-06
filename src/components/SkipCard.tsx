@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 
 // custom types
 import type { Skip } from "../types/skip"
@@ -11,10 +11,28 @@ interface SkipCardProps {
 
 const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
     return (
-        <div
-            className={`rounded-2xl p-4 bg-white shadow-md transition-transform hover:scale-105 ${selected ? "ring-2 ring-emerald-500" : ""
-                }`}
+        <motion.div
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            whileTap={{ scale: 0.97 }}
+            className={`relative rounded-2xl p-4 bg-white shadow-md cursor-pointer transition-all duration-300 ease-in-out
+    hover:shadow-[0_0_0_4px_rgba(34,197,94,0.2)]
+    ${selected ? "ring-2 ring-emerald-500 shadow-lg" : ""}`}
         >
+            {/* PULSE ANIMATION */}
+            <AnimatePresence>
+                {selected && (
+                    <motion.div
+                        key="pulse"
+                        initial={{ scale: 1 }}
+                        animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0] }}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                        className="absolute inset-0 rounded-2xl border-4 border-emerald-300 z-[-1]"
+                    />
+                )}
+            </AnimatePresence>
             <div className="flex justify-center relative">
                 <span className="bg-emerald-700 text-[12px] text-white py-1 px-4 rounded-2xl absolute top-0 right-0">{skip.size} Yards</span>
                 <img src='/skip-garbage-collector.png' alt={`${skip.size} yard skip`} className="h-32 object-contain" />
@@ -35,7 +53,7 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
                     </motion.button>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
