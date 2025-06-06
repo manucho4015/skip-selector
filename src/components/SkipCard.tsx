@@ -13,7 +13,7 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
                 }`}
         >
             <div className="flex justify-center relative">
-                <span className="bg-emerald-700 text-white py-1 px-4 rounded-2xl absolute top-0 right-0">{skip.size} Yards</span>
+                <span className="bg-emerald-700 text-[12px] text-white py-1 px-4 rounded-2xl absolute top-0 right-0">{skip.size} Yards</span>
                 <img src='/skip-garbage-collector.png' alt={`${skip.size} yard skip`} className="h-32 object-contain" />
             </div>
             <div className="mt-4">
