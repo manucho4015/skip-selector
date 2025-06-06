@@ -1,3 +1,6 @@
+import { motion } from 'motion/react'
+
+// custom types
 import type { Skip } from "../types/skip"
 
 interface SkipCardProps {
@@ -22,13 +25,14 @@ const SkipCard = ({ skip, selected, onSelect }: SkipCardProps) => {
                 <div className="flex items-center justify-between">
 
                     <p className="mt-2 text-xl font-bold text-emerald-900">£{skip.price_before_vat}</p>
-                    <button
+                    <motion.button
+                        whileTap={{ scaleX: .95 }}
                         onClick={() => onSelect(skip)}
-                        className={`mt-2 px-6 py-1 rounded-2xl text-white w-fit ${selected ? "bg-emerald-600" : "bg-emerald-700 hover:bg-emerald-600"
+                        className={`cursor-pointer mt-2 px-6 py-1 rounded-2xl text-white w-fit ${selected ? "bg-emerald-600" : "bg-emerald-700 hover:bg-emerald-600"
                             }`}
                     >
                         {selected ? "Selected" : "Select"}
-                    </button>
+                    </motion.button>
                 </div>
             </div>
         </div>
