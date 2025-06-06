@@ -6,7 +6,7 @@ import type { Skip } from "../types/skip"
 
 interface SkipGridProps {
     skips: Skip[]
-    selectedId: number
+    selectedId: number | null
     onSelect: (id: number) => void
 }
 const SkipGrid = ({ skips, selectedId, onSelect }: SkipGridProps) => {
